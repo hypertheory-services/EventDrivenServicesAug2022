@@ -1,0 +1,8 @@
+### Get the Plugins for Connect
+
+GET http://localhost:8083/connector-plugins HTTP/1.1
+
+
+### See the source and sink connectors
+
+GET  http://localhost:8083/connectors HTTP/1.1

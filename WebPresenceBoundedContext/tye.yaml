@@ -12,7 +12,7 @@ ingress:
 
 extensions:
   - name: dapr
-    components-path: ./components/dev
+    components-path: ./components/prod
 
 services:
   - name: webpresence
