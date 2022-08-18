@@ -18,7 +18,7 @@ public class EventHandlersController : ControllerBase
         _adapter = adapter;
     }
 
-    [Topic("web-presence", "webpresence-internal-user-deactivated")]
+    [Topic("webpresence", "webpresence-internal-user-deactivated")]
 
     [HttpPost("/event-handlers/user-deactivated")]
     public async Task<ActionResult> DeactivateUserAsync([FromBody] UserDeactivated request)
@@ -36,7 +36,7 @@ public class EventHandlersController : ControllerBase
     }
 
 
-    [Topic("web-presence", "webpresence-internal-enrollment-request-rejected")]
+    [Topic("webpresence", "webpresence-internal-enrollment-request-rejected")]
     [HttpPost("/event-handlers/enrollment-rejected")]
     public async Task<ActionResult> RejectEnrollmentAsync([FromBody] EnrollmentRequestRejected request)
     {
@@ -45,8 +45,8 @@ public class EventHandlersController : ControllerBase
         return await UpdateEnrollmentStatusAsync(request, newStatus);
     }
 
-    [Topic("web-presence", "webpresence-internal-enrollment-request-approved")]
-    [HttpPost("/event-handlers/enrollment-rejected")]
+    [Topic("webpresence", "webpresence-internal-enrollment-request-approved")]
+    [HttpPost("/event-handlers/enrollment-approved")]
     public async Task<ActionResult> AcceptEnrollmentAsync([FromBody] EnrollmentRequestApproved request)
     {
 
