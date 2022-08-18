@@ -30,6 +30,7 @@ public class UsersController : ControllerBase
     [Route("/webpresence/acl/map-new-user-to-domain")]
     public async Task<ActionResult> MapOnboard(NewUserCreated request)
     {
+        
         var messageToPublish = new Hypertheory.Events.UserOnboarded
         {
            Email = request.Email,
