@@ -48,6 +48,6 @@ public class UsersController : ControllerBase
         await _producer.ProduceAsync("hypertheory-events-useronboarded", message);
 
         // Step 3 Profit!
-        return BadRequest();
+        return Ok();
     }
 }
