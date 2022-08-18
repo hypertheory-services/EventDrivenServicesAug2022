@@ -18,6 +18,13 @@ services:
   - name: webpresence
     project: WebPresence/WebPresence.csproj
 
+  - name: webpresence-acl
+    project: WebPresenceAclSolution/WebPresenceAcl/WebPresenceAcl.csproj
+    env:
+      - name: Kafka__ProducerSettings__Bootstrapservers
+        value: "localhost:9092"
+
+
   # External Services
 
   - name: mongodb
@@ -25,3 +32,9 @@ services:
     bindings:
       - port: 27017
         connectionString: mongodb://root:TokyoJoe138!@localhost:${port}
+
+  - name: schema-registry
+    external: true
+    bindings:
+      - port: 8081
+        connectionString: http://localhost:${port}/
