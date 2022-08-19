@@ -17,6 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Protobuf Include="..\..\..\Docs\HypertheoryDocumentation\wwwroot\docs\domain\hypertheory-events-enrollment-requested.proto" GrpcServices="None">
+      <Link>Protos\hypertheory-events-enrollment-requested.proto</Link>
+    </Protobuf>
     <Protobuf Include="Protos\hypertheory-events-useronboarded.proto" GrpcServices="None">
       <SourceUri>http://localhost:5005/docs/domain/hypertheory-events-useronboarded.proto</SourceUri>
     </Protobuf>

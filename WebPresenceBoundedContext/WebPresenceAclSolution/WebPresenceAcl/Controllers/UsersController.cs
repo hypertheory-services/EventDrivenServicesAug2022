@@ -24,6 +24,14 @@ public class UsersController : ControllerBase
     }
 
     // when there is an internal new user created, publish it as a domain user onboarded
+    [Topic("webpresence-acl-dev", "webpresence-internal-enrollment-request-created")]
+    [HttpPost("/webpresence/acl/man-enrollment-request-to-domain")]
+    public ActionResult MapIt()
+    {
+
+    }
+
+
 
     [Topic("webpresence-acl-dev", "webpresence-internal-user-created")]
     [HttpPost]
@@ -45,9 +53,14 @@ public class UsersController : ControllerBase
             Value = messageToPublish
         };
 
-        await _producer.ProduceAsync("hypertheory-events-useronboarded", message);
+        _producer.Produce("hypertheory-events-useronboarded", message, HandleDeliveryReport);
 
         // Step 3 Profit!
         return Ok();
     }
+
+    private void HandleDeliveryReport(DeliveryReport<Null, UserOnboarded> report)
+    {
+        // do your fancy stuff "we are a REAL business here maybe log something" 
+    } 
 }
