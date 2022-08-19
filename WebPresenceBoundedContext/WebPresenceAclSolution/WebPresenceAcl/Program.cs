@@ -23,6 +23,13 @@ builder.Services.AddSingleton<DomainUserOnboardedEventProducer>(sp =>
     var handle = sp.GetRequiredService<ClientHandle>();
     return new DomainUserOnboardedEventProducer(handle, schemaUrl);
 });
+
+builder.Services.AddSingleton<DomainEnrollmentRequestEventProducer>(sp =>
+{
+    var handle = sp.GetRequiredService<ClientHandle>();
+    return new DomainEnrollmentRequestEventProducer(handle, schemaUrl);
+});
+
 builder.Services.AddControllers();
 
 var app = builder.Build();
