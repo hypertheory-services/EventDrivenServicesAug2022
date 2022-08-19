@@ -7,7 +7,7 @@ using Hypertheory.KafkaUtils.Handlers;
 namespace WebPresenceAcl.Producers;
 
 public class DomainEnrollmentRequestEventProducer : EventProducer
-    <EnrollmentRequested, ProtobufDeserializer<EnrollmentRequested>>
+    <EnrollmentRequested, ProtobufSerializer<EnrollmentRequested>>
 {
     public DomainEnrollmentRequestEventProducer(ClientHandle handler, string registryUrl) : base(handler, registryUrl)
     {
