@@ -40,10 +40,10 @@ builder.Services.AddHostedService<UserOnboardedConsumer>(sp =>
     
     var producer = sp.GetRequiredService<UserProducer>();
     var logger = sp.GetRequiredService<ILogger<UserOnboardedConsumer>>();
-    logger.LogInformation("Blah To the Max", config);
+   
     return new UserOnboardedConsumer(config, userOnboardedTopicToConsume, producer, logger, userDocumentToProduce);
 });
 var app = builder.Build();
-app.MapGet("/", () => "This does no HTTP stuff!");
+// app.MapGet("/", () => "This does no HTTP stuff!");
 
 app.Run();

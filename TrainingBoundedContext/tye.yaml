@@ -4,22 +4,25 @@ name: users
 services:
 
 
-  - name: users-acl
-    project: UsersAclSolution/UsersAcl/UsersAcl.csproj
+  - name: training-acl
+    project: TrainingAclSolution/TrainingAcl/TrainingAcl.csproj
     env:
-      - name: Kafka__ProducerSettings__Bootstrapservers
-        value: "localhost:9092"
+
       - name: Kafka__ConsumerSettings__Bootstrapservers
         value: "localhost:9092"
       - name: Kafka__ConsumerSettings__GroupId
-        value: "users-acl"
+        value: "training-acl"
       - name: Kafka__ConsumerSettings__AutoOffsetReset
         value: "earliest"
 
 
   # External Services
 
-
+  - name: mongodb
+    external: true
+    bindings:
+      - port: 27017
+        connectionString: mongodb://root:TokyoJoe138!@localhost:${port}
 
   - name: schema-registry
     external: true
