@@ -1,0 +1,30 @@
+name: users
+
+
+
+
+services:
+
+
+  - name: users-acl
+    project: UsersAclSolution/UsersAcl/UsersAcl.csproj
+    env:
+      - name: Kafka__ProducerSettings__Bootstrapservers
+        value: "localhost:9092"
+      - name: Kafka__ConsumerSettings__Bootstrapservers
+        value: "localhost:9092"
+      - name: Kafka__ConsumerSettings__GroupId
+        value: "users-acl"
+      - name: Kafka__ConsumerSettings__AutoOffsetReset
+        value: "earliest"
+
+
+  # External Services
+
+
+
+  - name: schema-registry
+    external: true
+    bindings:
+      - port: 8081
+        connectionString: http://localhost:${port}/

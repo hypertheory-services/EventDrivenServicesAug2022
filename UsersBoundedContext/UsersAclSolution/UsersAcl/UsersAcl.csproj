@@ -6,4 +6,21 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
+    <PackageReference Include="Hypertheory.KafkaUtils" Version="1.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="..\..\..\Docs\HypertheoryDocumentation\wwwroot\docs\domain\hypertheory-documents-user-key.proto" GrpcServices="None">
+      <Link>Protos\hypertheory-documents-user-key.proto</Link>
+    </Protobuf>
+    <Protobuf Include="..\..\..\Docs\HypertheoryDocumentation\wwwroot\docs\domain\hypertheory-documents-user.proto" GrpcServices="None">
+      <Link>Protos\hypertheory-documents-user.proto</Link>
+    </Protobuf>
+    <Protobuf Include="..\..\..\Docs\HypertheoryDocumentation\wwwroot\docs\domain\hypertheory-events-useronboarded.proto" GrpcServices="None">
+      <Link>Protos\hypertheory-events-useronboarded.proto</Link>
+    </Protobuf>
+  </ItemGroup>
+
 </Project>

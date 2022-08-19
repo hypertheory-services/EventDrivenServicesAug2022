@@ -8,11 +8,12 @@ using UsersAcl.Consumers;
 using UsersAcl.Producers;
 
 var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+
 
 builder.Services.AddOptions<ProducerConfig>().Bind(builder.Configuration.GetSection("Kafka:ProducerSettings"));
 
-builder.Services.AddOptions<ConsumerConfig>().Bind(builder.Configuration.GetSection("Kafka:ProducerSettings"));
+builder.Services.AddOptions<ConsumerConfig>().Bind(builder.Configuration.GetSection("Kafka:ConsumerSettings"));
+
 var schemaUrl = builder.Configuration.GetConnectionString("schema-registry");
 var userOnboardedTopicToConsume = "hypertheory-events-useronboarded";
 var userDocumentToProduce = "hypertheory-documents-user";
@@ -36,12 +37,13 @@ builder.Services.AddSingleton<UserProducer>(sp =>
 builder.Services.AddHostedService<UserOnboardedConsumer>(sp =>
 {
     var config = sp.GetRequiredService<IOptions<ConsumerConfig>>().Value;
+    
     var producer = sp.GetRequiredService<UserProducer>();
     var logger = sp.GetRequiredService<ILogger<UserOnboardedConsumer>>();
-
+    logger.LogInformation("Blah To the Max", config);
     return new UserOnboardedConsumer(config, userOnboardedTopicToConsume, producer, logger, userDocumentToProduce);
 });
-
-app.MapGet("/", () => "This does no HTTP stuff, buzz off!");
+var app = builder.Build();
+app.MapGet("/", () => "This does no HTTP stuff!");
 
 app.Run();
